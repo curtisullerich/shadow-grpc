@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package com.test.proto;
+option java_package = "com.test.proto";
+
+service StationService {
+    rpc startInstrument(StartInstrumentRequest) returns (StartInstrumentResponse) {}
+}
+
+enum Instrument {
+    UNKNOWN = 0;
+    INSTRUMENT_1 = 1;
+}
+
+message StartInstrumentRequest {
+    Instrument which = 1;
+}
+
+message StartInstrumentResponse {
+    // empty, I guess
+}
