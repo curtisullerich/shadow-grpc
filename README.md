@@ -1,9 +1,12 @@
 # shadow-grpc
-This is a minimal grpc project packaged with shadowJar, to demonstrate that ./gradlew run and ./gradlew runShadow behave differently.
+This is a minimal grpc project packaged with shadowJar, to demonstrate that `./gradlew run` and `./gradlew runShadow` behave differently.
 
-Issuing an RPC (with no server running) with ./gradlew run says "Connection refused: localhost/[0:0:0:0:0:0:0:1]:8980" as expected.
+Issuing an RPC (with no server running) with `./gradlew run` says `Connection refused: localhost/[0:0:0:0:0:0:0:1]:8980` as expected
+(meaning the RPC was issue, there was just no server to respond to it). If I run a server, it gets a response, but for simplicity of
+the demo I didn't include that.
 
-Running ./gradlew runShadow instead shows this unexpected error:
+Running `./gradlew runShadow` instead shows this unexpected error:
+```
 Exception in thread "main" io.grpc.StatusException: UNKNOWN
         at io.grpc.Status.asException(Status.java:550)
         at io.grpc.kotlin.ClientCalls$rpcImpl$1$1$1.onClose(ClientCalls.kt:296)
@@ -43,3 +46,4 @@ Caused by: java.nio.channels.UnsupportedAddressTypeException
         at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
         at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
         ... 1 more
+```
